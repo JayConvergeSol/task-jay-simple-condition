@@ -1,0 +1,139 @@
+<div class="container">
+<div class="row">
+    <form #conditionForm="ngForm">
+        <table>
+            <tr>
+                <td>
+                    <label class="form-label">Condition Name : </label>
+                </td>
+                <td>
+                    <input type="text" class="col-12" pInputText ngModel name="conditionName" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="form-label">value Type:</label>
+                </td>
+                <td>
+                    <div class="d-flex d-inline">                    
+                        <div class="">
+                            <p-radioButton value="Field" ngModel name="valueType"></p-radioButton>
+                            <label class="ml-2">Field</label>
+                        </div>
+                        
+                        <div class="ms-4">
+                            <p-radioButton value="SystemValue" ngModel name="valueType"></p-radioButton>
+                            <label class="ml-2">System Value</label>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Field: 
+                </td>
+                <td>
+                    <p-dropdown (onChange)="getOperator(fieldId.value)" #fieldId ngModel name="fieldId"  [options]="conditions" optionValue="field_artifact_id" optionLabel="display_name" placeholder="Select Field"></p-dropdown>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Negate Result: 
+                </td>
+                <td>
+                    <p-inputSwitch ngModel name="negateResult" ></p-inputSwitch>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Comparison Operation: 
+                </td>
+                <td>
+                    <p-dropdown #Operator ngModel name="operator" [options]="formateOperator" optionValue="column" optionLabel="data" placeholder="Select Operator"></p-dropdown>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Value Type: 
+                </td>
+                <td>
+                    <div class="d-flex d-inline">                    
+                        <div class="">
+                            <p-radioButton value="Constant" ngModel name="valueType2"></p-radioButton>
+                            <label for="ingredient2" class="ml-2">Constant</label>
+                        </div>
+                        <div class="ms-4">
+                            <p-radioButton value="Field" ngModel name="valueType2"></p-radioButton>
+                            <label for="ingredient3" class="ml-2">Field</label>
+                        </div>
+                        <div class="ms-4">
+                            <p-radioButton value="SystemValue" ngModel name="valueType2"></p-radioButton>
+                            <label for="ingredient3" class="ml-2">System Value</label>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Constant:
+                </td>
+                <td>
+                    <ng-container *ngIf="operator.field_type_string =='string'">
+                        <ng-container *ngIf="Operator.value == 1">
+                            <input type="text" class="col-12" pInputText ngModel name="ConstantB1" /> 
+                            <input type="text" class="col-12 ms-3" pInputText ngModel name="ConstantB2" /> 
+                        </ng-container>
+                        <ng-container *ngIf="Operator.value == 5 || Operator.value ==12 || Operator.value ==4 || Operator.value ==13 ||Operator.value == 2 ||Operator.value == 11">
+                            <input type="text" class="col-12" pInputText ngModel name="Constant" /> 
+                        </ng-container>
+                    </ng-container>
+
+                    <ng-container *ngIf="operator.field_type_string =='date'">
+                        <ng-container *ngIf="Operator.value == 5">
+                            <p-calendar ngModel name="Constant" ></p-calendar>
+                        </ng-container>
+                        <ng-container *ngIf="Operator.value == 1">
+                            <p-calendar name="ConstantB1" ></p-calendar> 
+                            <p-calendar name="ConstantB2" ></p-calendar>
+                        </ng-container>
+                        <ng-container *ngIf="Operator.value == 12 || Operator.value == 4 ||  Operator.value == 13 ||  Operator.value == 2 ||  Operator.value == 11">
+                            <p-calendar ngModel name="Constant" ></p-calendar>
+                        </ng-container>
+                    </ng-container>
+
+                    <ng-container *ngIf="operator.field_type_string =='boolean'">
+                        <div class="flex align-items-center">
+                            <p-radioButton name="Constant" value="Yes" ngModel></p-radioButton>
+                            <label class="ml-2">Yes</label>
+                        </div>
+                        <div class="flex align-items-center">
+                            <p-radioButton name="Constant" value="No" ngModel></p-radioButton>
+                            <label class="ml-2">No</label>
+                        </div>
+                    </ng-container>
+                    
+                    <ng-container *ngIf="operator.field_type_string =='integer'">
+                        <ng-container *ngIf="operator.field_type_input =='number'">
+                            <ng-container *ngIf="Operator.value == 12 || Operator.value == 4 ||  Operator.value == 13 ||  Operator.value == 2 ||  Operator.value == 11||  Operator.value == 5||  Operator.value == 6 ||Operator.value ==10">
+                                <p-inputNumber ngModel name="Constant" [showButtons]="true" inputId="stacked"> </p-inputNumber>
+                            </ng-container>
+                            <ng-container *ngIf="Operator.value == 1">
+                                <p-inputNumber ngModel name="ConstantB1" [showButtons]="true" inputId="stacked"> </p-inputNumber>
+                                <p-inputNumber ngModel name="ConstantB2" [showButtons]="true" inputId="stacked" class="ms-3"> </p-inputNumber>
+                            </ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="operator.field_type_input =='multi_select'">
+                            <p-multiSelect [options]="constantChoices"  optionValue="id" optionLabel="name"  ngModel name="Constant" optionLabel="name" placeholder="Select Constants"></p-multiSelect>
+                        </ng-container>
+                        <ng-container *ngIf="operator.field_type_input=='single_select'">
+                            <p-dropdown ngModel name="Constant" [options]="constantChoices"  optionValue="id" optionLabel="name"  placeholder="Select Constants"></p-dropdown>
+                        </ng-container>
+                    </ng-container>
+                </td>
+            </tr>
+            
+        </table>
+        <button type="submit" (click)="saveData(conditionForm.value)" class="btn">Save</button>
+    </form>
+</div>
+</div>
