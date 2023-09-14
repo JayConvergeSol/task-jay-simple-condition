@@ -12,6 +12,7 @@ export class DialogConditionComponent {
   operator :any =[]
   formateOperator : any = []
   constantChoices :any[]=[]
+  valueType2 = 'Constant'
 
   constructor(
     private readfieldService : ReadFieldService,

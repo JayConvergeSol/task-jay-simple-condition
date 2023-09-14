@@ -59,15 +59,15 @@
                 <td>
                     <div class="d-flex d-inline">                    
                         <div class="">
-                            <p-radioButton value="Constant" ngModel name="valueType2"></p-radioButton>
+                            <p-radioButton value="Constant" [(ngModel)]="valueType2" name="valueType2"></p-radioButton>
                             <label for="ingredient2" class="ml-2">Constant</label>
                         </div>
                         <div class="ms-4">
-                            <p-radioButton value="Field" ngModel name="valueType2"></p-radioButton>
+                            <p-radioButton value="Field" [(ngModel)]="valueType2" name="valueType2"></p-radioButton>
                             <label for="ingredient3" class="ml-2">Field</label>
                         </div>
                         <div class="ms-4">
-                            <p-radioButton value="SystemValue" ngModel name="valueType2"></p-radioButton>
+                            <p-radioButton value="SystemValue"[(ngModel)]="valueType2"  name="valueType2"></p-radioButton>
                             <label for="ingredient3" class="ml-2">System Value</label>
                         </div>
                     </div>
@@ -111,7 +111,7 @@
                             <label class="ml-2">No</label>
                         </div>
                     </ng-container>
-                    
+
                     <ng-container *ngIf="operator.field_type_string =='integer'">
                         <ng-container *ngIf="operator.field_type_input =='number'">
                             <ng-container *ngIf="Operator.value == 12 || Operator.value == 4 ||  Operator.value == 13 ||  Operator.value == 2 ||  Operator.value == 11||  Operator.value == 5||  Operator.value == 6 ||Operator.value ==10">
