@@ -17,12 +17,12 @@
                 <td>
                     <div class="d-flex d-inline">                    
                         <div class="">
-                            <p-radioButton value="Field" ngModel name="valueType"></p-radioButton>
+                            <p-radioButton value="Field" [(ngModel)]="valueType" name="valueType"></p-radioButton>
                             <label class="ml-2">Field</label>
                         </div>
                         
                         <div class="ms-4">
-                            <p-radioButton value="SystemValue" ngModel name="valueType"></p-radioButton>
+                            <p-radioButton value="SystemValue" [(ngModel)]="valueType" name="valueType"></p-radioButton>
                             <label class="ml-2">System Value</label>
                         </div>
                     </div>
@@ -133,7 +133,7 @@
             </tr>
             
         </table>
-        <button type="submit" (click)="saveData(conditionForm.value)" class="btn">Save</button>
+        <!-- <button type="submit" (click)="saveData(conditionForm.value)" class="btn">Save</button> -->
     </form>
 </div>
 </div>
