@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ReadFieldService } from './read-field.service';
+import { ReadFieldService } from './comparison-operator.service';
 
 describe('ReadFieldService', () => {
   let service: ReadFieldService;
