@@ -16,6 +16,7 @@ export class ConditionsComponent {
     this.ref = this.dialogService.open(DialogConditionComponent, {
         header: 'Select a Condition',
         width: '70%',
+        height: '70%',
         contentStyle: { overflow: 'auto' },
         baseZIndex: 10000,
         maximizable: true

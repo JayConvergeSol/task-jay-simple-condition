@@ -18,12 +18,12 @@
                     <div class="d-flex d-inline">                    
                         <div class="">
                             <p-radioButton value="Field" [(ngModel)]="valueType" name="valueType"></p-radioButton>
-                            <label class="ml-2">Field</label>
+                            <label class="ml-2 ms-2">Field</label>
                         </div>
                         
                         <div class="ms-4">
                             <p-radioButton value="SystemValue" [(ngModel)]="valueType" name="valueType"></p-radioButton>
-                            <label class="ml-2">System Value</label>
+                            <label class="ml-2 ms-2">System Value</label>
                         </div>
                     </div>
                 </td>
@@ -33,7 +33,7 @@
                     Field: 
                 </td>
                 <td>
-                    <p-dropdown (onChange)="getOperator(fieldId.value)" #fieldId ngModel name="fieldId"  [options]="conditions" optionValue="filter_id" optionLabel="filter_display" placeholder="Select Field"></p-dropdown>
+                    <p-dropdown (click)="resetOperator(Operator.value)" (onChange)="getOperator(fieldId.value)" #fieldId ngModel name="fieldId"  [options]="conditions" optionValue="filter_id" optionLabel="filter_display" placeholder="Select Field"></p-dropdown>
                 </td>
             </tr>
             <tr>
@@ -47,6 +47,7 @@
             <tr>
                 <td>
                     Comparison Operation: 
+                    
                 </td>
                 <td>
                     <p-dropdown #Operator ngModel name="operator" [options]="formateOperator" optionValue="key" optionLabel="data" placeholder="Select Operator"></p-dropdown>
@@ -60,15 +61,15 @@
                     <div class="d-flex d-inline">                    
                         <div class="">
                             <p-radioButton value="Constant" [(ngModel)]="valueType2" name="valueType2"></p-radioButton>
-                            <label for="ingredient2" class="ml-2">Constant</label>
+                            <label for="ingredient2" class="ml-2 ms-2">Constant</label>
                         </div>
                         <div class="ms-4">
                             <p-radioButton value="Field" [(ngModel)]="valueType2" name="valueType2"></p-radioButton>
-                            <label for="ingredient3" class="ml-2">Field</label>
+                            <label for="ingredient3" class="ml-2 ms-2">Field</label>
                         </div>
                         <div class="ms-4">
                             <p-radioButton value="SystemValue"[(ngModel)]="valueType2"  name="valueType2"></p-radioButton>
-                            <label for="ingredient3" class="ml-2">System Value</label>
+                            <label for="ingredient3" class="ml-2 ms-2">System Value</label>
                         </div>
                     </div>
                 </td>
@@ -80,48 +81,57 @@
                 <td>
                     <ng-container *ngIf="operator.field_type_string =='string'">
                         <ng-container *ngIf="Operator.value == 1">
-                            <input type="text" class="col-12" pInputText ngModel name="ConstantB1" /> 
-                            <input type="text" class="col-12 ms-3" pInputText ngModel name="ConstantB2" /> 
+                            <div class="d-flex gap-3 ">
+                                <input type="text" class="col-5" pInputText ngModel name="ConstantB1" /> 
+                                <input type="text" class="col-5 ms-3" pInputText ngModel name="ConstantB2" /> 
+                            </div>     
                         </ng-container>
-                        <ng-container *ngIf="Operator.value == 5 || Operator.value ==12 || Operator.value ==4 || Operator.value ==13 ||Operator.value == 2 ||Operator.value == 11">
+                        <ng-container *ngIf="Operator.value ==10 ||  Operator.value == 6 ||  Operator.value == 8 || Operator.value == 3 || Operator.value == 5 || Operator.value ==12 || Operator.value ==4 || Operator.value ==13 ||Operator.value == 2 ||Operator.value == 11">
                             <input type="text" class="col-12" pInputText ngModel name="Constant" /> 
                         </ng-container>
                     </ng-container>
 
                     <ng-container *ngIf="operator.field_type_string =='date'">
                         <ng-container *ngIf="Operator.value == 5">
-                            <p-calendar ngModel name="Constant" ></p-calendar>
+                            <p-calendar ngModel name="Constant" [showIcon]="true" ></p-calendar>
                         </ng-container>
                         <ng-container *ngIf="Operator.value == 1">
-                            <p-calendar name="ConstantB1" ></p-calendar> 
-                            <p-calendar name="ConstantB2" ></p-calendar>
+                            <div class="d-flex gap-3 ">
+                                <p-calendar name="ConstantB1" [showIcon]="true"></p-calendar> 
+                                <p-calendar name="ConstantB2" [showIcon]="true"></p-calendar>
+                            </div>
                         </ng-container>
-                        <ng-container *ngIf="Operator.value == 12 || Operator.value == 4 ||  Operator.value == 13 ||  Operator.value == 2 ||  Operator.value == 11">
-                            <p-calendar ngModel name="Constant" ></p-calendar>
+                        <ng-container *ngIf="Operator.value ==10 || Operator.value == 6 || Operator.value == 8 || Operator.value == 3 || Operator.value == 12 || Operator.value == 4 ||  Operator.value == 13 ||  Operator.value == 2 ||  Operator.value == 11">
+                            <p-calendar ngModel name="Constant" [showIcon]="true" ></p-calendar>
                         </ng-container>
                     </ng-container>
 
                     <ng-container *ngIf="operator.field_type_string =='boolean'">
-                        <div class="flex align-items-center">
-                            <p-radioButton name="Constant" value="Yes" ngModel></p-radioButton>
-                            <label class="ml-2">Yes</label>
-                        </div>
-                        <div class="flex align-items-center">
-                            <p-radioButton name="Constant" value="No" ngModel></p-radioButton>
-                            <label class="ml-2">No</label>
+                        <div class="d-flex gap-3 ">
+                            <div class="flex align-items-center">
+                                <p-radioButton name="Constant" value="Yes" ngModel></p-radioButton>
+                                <label class="ml-2 ms-2">Yes</label>
+                            </div>
+                            <div class="flex align-items-center">
+                                <p-radioButton name="Constant" value="No" ngModel></p-radioButton>
+                                <label class="ml-2 ms-2">No</label>
+                            </div>
                         </div>
                     </ng-container>
 
                     <ng-container *ngIf="operator.field_type_string =='integer'">
                         <ng-container *ngIf="operator.field_type_input =='number'">
-                            <ng-container *ngIf="Operator.value == 12 || Operator.value == 4 ||  Operator.value == 13 ||  Operator.value == 2 ||  Operator.value == 11||  Operator.value == 5||  Operator.value == 6 ||Operator.value ==10">
+                            <ng-container *ngIf=" Operator.value == 8 || Operator.value == 3 || Operator.value == 12 || Operator.value == 4 ||  Operator.value == 13 ||  Operator.value == 2 ||  Operator.value == 11||  Operator.value == 5||  Operator.value == 6 ||Operator.value ==10">
                                 <p-inputNumber ngModel name="Constant" [showButtons]="true" inputId="stacked"> </p-inputNumber>
                             </ng-container>
                             <ng-container *ngIf="Operator.value == 1">
-                                <p-inputNumber ngModel name="ConstantB1" [showButtons]="true" inputId="stacked"> </p-inputNumber>
-                                <p-inputNumber ngModel name="ConstantB2" [showButtons]="true" inputId="stacked" class="ms-3"> </p-inputNumber>
+                                <div class="d-flex gap-3 ">
+                                    <p-inputNumber ngModel name="ConstantB1" [showButtons]="true" inputId="stacked"> </p-inputNumber>
+                                    <p-inputNumber ngModel name="ConstantB2" [showButtons]="true" inputId="stacked" class="ms-3"> </p-inputNumber>
+                                </div>
                             </ng-container>
                         </ng-container>
+
                         <ng-container *ngIf="operator.field_type_input =='multi_select'">
                             <p-multiSelect [options]="constantChoices"  optionValue="id" optionLabel="name"  ngModel name="Constant" optionLabel="name" placeholder="Select Constants"></p-multiSelect>
                         </ng-container>

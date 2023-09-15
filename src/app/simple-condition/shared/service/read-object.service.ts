@@ -79,7 +79,7 @@ export class ReadObjectService {
                     "LessThan",
                     "Was"
                 ],
-                "field_artifact_id": [
+                "comparison_operator_ids": [
                     1,
                     5,
                     6,

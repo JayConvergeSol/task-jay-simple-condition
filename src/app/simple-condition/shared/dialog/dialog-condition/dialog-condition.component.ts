@@ -28,12 +28,13 @@ export class DialogConditionComponent {
 
   getOperator(filter_id:string){
     this.operator = this.conditions.find(field => field.filter_id === filter_id);
-    
+    console.log(this.operator);
+    this.formateOperator =[];
     for (const element of this.operator.comparison_operator_ids) {
       let value  = this.readfieldService.getConditions(element);
       this.formateOperator.push({key: element, data: value})
     }
-    
+    this.constantChoices =[];
     for (const key in this.operator.choices) {
       if (this.operator.choices.hasOwnProperty(key)) {
         this.constantChoices.push({ id: key, name: this.operator.choices[key] });
@@ -42,7 +43,11 @@ export class DialogConditionComponent {
     console.log(this.formateOperator)
   }
 
-  // saveData(data:any){
-  //   console.log(data)
-  // }
+  resetOperator(sampleData:any){
+    if(sampleData){
+      this.formateOperator=[]
+    }
+  }
+
+  
 }
