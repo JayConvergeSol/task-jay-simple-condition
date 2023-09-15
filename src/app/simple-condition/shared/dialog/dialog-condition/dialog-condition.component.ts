@@ -29,10 +29,9 @@ export class DialogConditionComponent {
   getOperator(filter_id:string){
     this.operator = this.conditions.find(field => field.filter_id === filter_id);
     
-    for (let i = 0; i < this.operator.comparison_operator_ids.length; i++) {
-      let value  = this.readfieldService.getConditions(this.operator.comparison_operator_ids[i]);
-      console.log(this.operator.comparison_operator_ids[i])
-      this.formateOperator.push({column: this.operator.comparison_operator_ids[i] ,data: value})
+    for (const element of this.operator.comparison_operator_ids) {
+      let value  = this.readfieldService.getConditions(element);
+      this.formateOperator.push({key: element, data: value})
     }
     
     for (const key in this.operator.choices) {
